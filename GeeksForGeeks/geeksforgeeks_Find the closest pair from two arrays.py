@@ -6,7 +6,7 @@ class Solution:
         N = 0
         M = m-1
         
-        dif = float('inf')
+        
         while N < n and M >= 0:
             curr_sum = arr[N] + brr[M]
             
