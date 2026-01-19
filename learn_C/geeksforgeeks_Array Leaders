@@ -1,0 +1,53 @@
+#include <stdlib.h>
+#include<limits.h>
+
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int* leaders(int* arr, int n, int* returnSize) 
+{
+    if (n == 0) {
+        *returnSize = 0;
+        return NULL;
+    }
+     
+    // code here
+    int *res = (int*)malloc(n * sizeof(int));
+     if (res == NULL) {
+        *returnSize = 0;
+        return NULL; // Hết RAM thì chịu
+    }
+    
+    int count = 0;
+    int max_from_right = arr[n - 1]; 
+    res[count++] = arr[n - 1];
+
+
+    // Quét từ cuối về đầu
+    for (int i = n - 2; i >= 0; i--) 
+    {
+        // Nếu phần tử hiện tại LỚN HƠN max của đám bên phải nó
+        if (arr[i] >= max_from_right) 
+        {
+            // 1. Nó chính là Leader (thỏa mãn điều kiện)
+            res[count++] = arr[i];
+            
+            // 2. Cập nhật lại Max mới (nó trở thành vua mới của vùng bên phải)
+            max_from_right = arr[i];
+        }
+    }
+    
+    for(int i = 0; i < count / 2; i++) {
+        swap(&res[i], &res[count - 1 - i]);
+    }
+
+    // 5. Gán kích thước thực tế để trả về cho hàm main biết
+    *returnSize = count;
+
+    // Trả về con trỏ (Mảng này đang nằm trên Heap, sống dai hơn hàm này)
+    return res;
+
+}
