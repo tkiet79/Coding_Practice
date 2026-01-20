@@ -58,12 +58,27 @@ void trim(char *str)
     str[writer] = '\0';
 }
 
-int main() 
-{
+int main() {
     printf("=== TEST BAI 1: TRIM ===\n");
-    char s1[] = "   Code    C   kho  qua   ";
-    printf("Truoc: '[%s]'\n", s1);
+    // Test case phức tạp hơn:
+    // 1. Khoảng trắng đầu
+    // 2. Nhiều khoảng trắng giữa
+    // 3. Khoảng trắng cuối
+    // 4. Chuỗi rỗng hoặc chỉ có dấu cách (để test vụ crash)
+    char s1[] = "   Code    C   kho  qua   "; 
+    char s2[] = "     "; // Test case tử thần của mày
+    char s3[] = "";      // Test case rỗng
+
+    printf("Test 1 Truoc: '[%s]'\n", s1);
     trim(s1);
-    printf("Sau  : '[%s]'\n", s1); 
-    // Kỳ vọng: "Code C kho qua"
+    printf("Test 1 Sau  : '[%s]'\n", s1); 
+
+    printf("Test 2 (Spaces) Truoc: '[%s]'\n", s2);
+    trim(s2);
+    printf("Test 2 (Spaces) Sau  : '[%s]'\n", s2);
+
+    printf("Test 3 (Empty) Truoc: '[%s]'\n", s3);
+    trim(s3);
+    printf("Test 3 (Empty) Sau  : '[%s]'\n", s3);
+    return 0;
 }
