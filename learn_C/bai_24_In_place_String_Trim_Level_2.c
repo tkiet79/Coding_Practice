@@ -12,7 +12,7 @@
 #include <string.h>
 
 // ==========================================
-// BÀI 1: In-place String Trim (Level 2)
+// BÀI 24: In-place String Trim (Level 2)
 // ==========================================
 // Yêu cầu: 
 // 1. Xóa khoảng trắng thừa ở ĐẦU chuỗi.
